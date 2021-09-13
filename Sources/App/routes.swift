@@ -10,6 +10,12 @@ func routes(_ app: Application) throws {
         return "Hello, world!"
     }
     
+    
+    app.webSocket("echo") { (req, ws) in
+        print("收到来自客户端的请求：\n\(req.content)")
+        ws.send("我收到了你的消息")
+    }
+    
     // MARK: 注册路由的第一个种方式
     let acronymsController = AcronymsController()
     let usersController = UsersController()
